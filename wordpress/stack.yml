@@ -14,7 +14,7 @@ services:
     volumes:
       - web:/var/www/html
     networks:
-      - wp-network
+      - app-network
 
   db:
     image: mysql:5.7
@@ -27,12 +27,12 @@ services:
     volumes:
       - db:/var/lib/mysql
     networks:
-      - wp-network
+      - app-network
 
 volumes:
   web:
   db:
   
 networks:
-  wp-network:
+  app-network:
     driver: bridge
