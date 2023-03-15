@@ -8,12 +8,12 @@ productsDB=[
  {
  'id':'101',
  'name':'Smart Watch',
- 'price':'500.0'
+ 'price':500.0
  },
  {
  'id':'102',
  'name':'WiFi Router',
- 'price':'200.0'
+ 'price':200.0
  }
  ]
 
