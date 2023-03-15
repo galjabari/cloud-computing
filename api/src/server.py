@@ -8,12 +8,12 @@ productsDB=[
  {
  'id':'101',
  'name':'Smart Watch',
- 'price':500.0
+ 'price':'500.0'
  },
  {
  'id':'102',
  'name':'WiFi Router',
- 'price':200.0
+ 'price':'200.0'
  }
  ]
 
@@ -44,13 +44,13 @@ def updateProduct(productId):
 @app.route('/api/product',methods=['POST'])
 def createProdcut():
 
-    pr = {
+    rec = {
     'id':request.json['id'],
     'name':request.json['name'],
     'price':request.json['price']
     }
-    productsDB.append(pr)
-    return jsonify(pr)
+    productsDB.append(rec)
+    return jsonify(rec)
 
 @app.route('/api/product/<productId>',methods=['DELETE'])
 def deleteProdcut(productId):
