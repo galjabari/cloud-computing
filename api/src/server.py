@@ -23,43 +23,39 @@ def getAllProducts():
 
 @app.route('/api/product/<productId>',methods=['GET'])
 def getProduct(productId):
-    prod = [ p for p in productsDB if (p['id'] == productId) ] 
-    return jsonify({'product':prod})
-
+    product = [ p for p in productsDB if (p['id'] == productId) ] 
+    return jsonify({'product':product})
 
 @app.route('/api/product/<productId>',methods=['PUT'])
 def updateProduct(productId):
-
-    prod = [ p for p in productsDB if (p['id'] == productId) ]
-
-    if 'name' in request.json : 
-        prod[0]['name'] = request.json['name']
+    product = [ p for p in productsDB if (p['id'] == productId) ]
+  
+    if 'name' in request.json: 
+        product[0]['name'] = request.json['name']
 
     if 'price' in request.json:
-        prod[0]['price'] = request.json['price']
+        product[0]['price'] = request.json['price']
 
-    return jsonify({'product':prod[0]})
-
+    return jsonify({'product':product[0]})
 
 @app.route('/api/product',methods=['POST'])
 def createProdcut():
-
-    rec = {
+    p = {
     'id':request.json['id'],
     'name':request.json['name'],
     'price':request.json['price']
     }
-    productsDB.append(rec)
-    return jsonify(rec)
+    productsDB.append(p)
+    return jsonify(p)
 
 @app.route('/api/product/<productId>',methods=['DELETE'])
 def deleteProdcut(productId):
-    prod = [ p for p in productsDB if (p['id'] == productId) ]
+    product = [ p for p in productsDB if (p['id'] == productId) ]
 
-    if len(prod) == 0:
+    if len(product) == 0:
        abort(404)
 
-    productsDB.remove(prod[0])
+    productsDB.remove(product[0])
     return jsonify({'response':'Success'})
 
 if __name__ == "__main__":
