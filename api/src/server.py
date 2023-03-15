@@ -40,13 +40,13 @@ def updateProduct(productId):
 
 @app.route('/api/product',methods=['POST'])
 def createProdcut():
-    info = {
+    product = {
     'id':request.json['id'],
     'name':request.json['name'],
     'price':request.json['price']
     }
-    productsDB.append(info)
-    return jsonify(info)
+    productsDB.append(product)
+    return jsonify(product)
 
 @app.route('/api/product/<productId>',methods=['DELETE'])
 def deleteProdcut(productId):
