@@ -28,7 +28,7 @@ def getProduct(productId):
     product = [ p for p in productsDB if (p['id'] == productId) ] 
     return jsonify({'product':product})
 
-# curl -i -X PUT -H 'Content-Type: application/json' -d '{"id": "101", "price":400}' http://localhost/api/product/101
+# curl -i -X PUT -H 'Content-Type: application/json' -d '{"price":400}' http://localhost/api/product/101
 @app.route('/api/product/<productId>',methods=['PUT'])
 def updateProduct(productId):
     product = [ p for p in productsDB if (p['id'] == productId) ]
