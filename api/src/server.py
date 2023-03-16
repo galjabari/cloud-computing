@@ -17,15 +17,18 @@ productsDB=[
  }
  ]
 
+# curl -i -X GET http://localhost/api/product
 @app.route('/api/product',methods=['GET'])
 def getAllProducts():
     return jsonify({'products':productsDB})
 
+# curl -i -X GET http://localhost/api/product/101
 @app.route('/api/product/<productId>',methods=['GET'])
 def getProduct(productId):
     product = [ p for p in productsDB if (p['id'] == productId) ] 
     return jsonify({'product':product})
 
+# curl -i -X PUT -H 'Content-Type: application/json' -d '{"id": "101", "price":400}' http://localhost/api/product/101
 @app.route('/api/product/<productId>',methods=['PUT'])
 def updateProduct(productId):
     product = [ p for p in productsDB if (p['id'] == productId) ]
@@ -38,6 +41,7 @@ def updateProduct(productId):
 
     return jsonify({'product':product[0]})
 
+# curl -i -X POST -H 'Content-Type: application/json' -d '{"id":"103","name":"LED","price":100}' http://localhost/api/product
 @app.route('/api/product',methods=['POST'])
 def createProdcut():
     product = {
@@ -48,6 +52,7 @@ def createProdcut():
     productsDB.append(product)
     return jsonify(product)
 
+# curl -i -X DELETE http://localhost/api/product/103
 @app.route('/api/product/<productId>',methods=['DELETE'])
 def deleteProdcut(productId):
     product = [ p for p in productsDB if (p['id'] == productId) ]
