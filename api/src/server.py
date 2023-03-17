@@ -1,10 +1,8 @@
-from flask import Flask
-from flask import jsonify
-from flask import request
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-productsDB=[
+products=[
  {
  'id':'101',
  'name':'Smart Watch',
@@ -20,18 +18,18 @@ productsDB=[
 # curl -i -X GET http://localhost/api/product
 @app.route('/api/product',methods=['GET'])
 def getAllProducts():
-    return jsonify({'products':productsDB})
+    return jsonify({'products':products})
 
 # curl -i -X GET http://localhost/api/product/101
 @app.route('/api/product/<productId>',methods=['GET'])
 def getProduct(productId):
-    product = [ p for p in productsDB if (p['id'] == productId) ] 
+    product = [ p for p in products if (p['id'] == productId) ] 
     return jsonify({'product':product})
 
 # curl -i -X PUT -H 'Content-Type: application/json' -d '{"price":400}' http://localhost/api/product/101
 @app.route('/api/product/<productId>',methods=['PUT'])
 def updateProduct(productId):
-    product = [ p for p in productsDB if (p['id'] == productId) ]
+    product = [ p for p in products if (p['id'] == productId) ]
   
     if 'name' in request.json: 
         product[0]['name'] = request.json['name']
@@ -49,18 +47,18 @@ def createProdcut():
     'name':request.json['name'],
     'price':request.json['price']
     }
-    productsDB.append(product)
+    products.append(product)
     return jsonify(product)
 
 # curl -i -X DELETE http://localhost/api/product/103
 @app.route('/api/product/<productId>',methods=['DELETE'])
 def deleteProdcut(productId):
-    product = [ p for p in productsDB if (p['id'] == productId) ]
+    product = [ p for p in products if (p['id'] == productId) ]
 
     if len(product) == 0:
        abort(404)
 
-    productsDB.remove(product[0])
+    products.remove(product[0])
     return jsonify({'response':'Success'})
 
 if __name__ == "__main__":
