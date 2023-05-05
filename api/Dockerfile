@@ -1,5 +1,5 @@
 # Set the base image
-FROM python:3.7-alpine
+FROM python:3.8-alpine
 # Set the working directory in the container
 WORKDIR /app
 # Copy the dependencies file to the working directory
