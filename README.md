@@ -9,4 +9,4 @@
 - Lab 7: Deploy a relational database with Docker
 - Lab 8: Delopy a NoSQL database with Docker
 - Lab 9: Create a load balancer with Docker 
-- Lab 10: Create a cluster of containers with Docker Swarm
+- Lab 10: Create a cluster with Docker Swarm
