@@ -1,6 +1,6 @@
  # Cloud Computing Labs
  Hands-on labs for Cloud Computing course 
-- Lab 1: Install Dcoker on Linux
+- Lab 1: Install Docker on Linux
 - Lab 2: Install Portainer CE with Docker on Linux
 - Lab 3: Install Visual Studio Code on Linux
 - Lab 4: Create containers using Docker Compose
