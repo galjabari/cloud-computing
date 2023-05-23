@@ -1,0 +1,35 @@
+version: '3'
+services:
+  api-gateway:
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    depends_on:
+      - products-api
+      - users-api
+    networks:
+      - app-net
+
+  products-api:
+    build:
+      context: ./products-api
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+    networks:
+      - app-net
+
+  users-api:
+    build:
+      context: ./users-api
+      dockerfile: Dockerfile
+    ports:
+      - 5001:5000
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    driver: bridge
