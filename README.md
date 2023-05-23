@@ -6,7 +6,8 @@
 - Lab 4: Create containers using Docker Compose
 - Lab 5: Build images using Dockerfile
 - Lab 6: Build a containerized web application with Docker
-- Lab 7: Deploy a relational database with Docker
-- Lab 8: Delopy a NoSQL database with Docker
-- Lab 9: Create a load balancer with Docker 
-- Lab 10: Create a cluster with Docker Swarm
+- Lab 7: Deploy a microservices architecture with Docker
+- Lab 8: Deploy a relational database with Docker
+- Lab 9: Delopy a NoSQL database with Docker
+- Lab 10: Create a load balancer with Docker 
+- Lab 11: Create a cluster with Docker Swarm
