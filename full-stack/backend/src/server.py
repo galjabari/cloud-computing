@@ -1,11 +1,13 @@
 from flask import Flask, jsonify, request
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+import os
 
 app = Flask(__name__)
 
+mongo_host = os.environ.get('MONGO_HOST')
 # MongoDB connection
-client = MongoClient('mongodb://database:27017')
+client = MongoClient(f"mongodb://{mongo_host}:27017")
 db = client['books']
 collection = db['books']
 
