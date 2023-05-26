@@ -10,7 +10,7 @@ services:
       - products-api
       - users-api
     networks:
-      - app-net
+      - api-network
 
   products-api:
     build:
@@ -19,7 +19,7 @@ services:
     ports:
       - 5000:5000
     networks:
-      - app-net
+      - api-network
 
   users-api:
     build:
@@ -28,8 +28,8 @@ services:
     ports:
       - 5001:5000
     networks:
-      - app-net
+      - api-network
 
 networks:
-  app-net:
+  api-network:
     driver: bridge
