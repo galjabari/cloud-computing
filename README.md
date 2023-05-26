@@ -9,6 +9,6 @@
 - Lab 7: Deploy a microservices architecture with Docker
 - Lab 8: Deploy a relational database with Docker
 - Lab 9: Delopy a NoSQL database with Docker
-- Lab 10: Create a full stack web app with Docker
+- Lab 10: Create a full stack application with Docker
 - Lab 11: Create a load balancer with Docker 
 - Lab 12: Create a cluster with Docker Swarm
