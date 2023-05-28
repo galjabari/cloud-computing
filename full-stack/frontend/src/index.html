@@ -1,48 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="bookApp">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <title>Books Database</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-  <script src="app.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+    <title>Books App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
 </head>
-
-<body ng-controller="bookController">
-  <h1>Books Database</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Year</th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="book in books">
-        <td>{{ book._id }}</td>
-        <td>{{ book.title }}</td>
-        <td>{{ book.author }}</td>
-        <td>{{ book.year }}</td>
-        <td>
-          <button ng-click="deleteBook(book)">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h2>Add New Book</h2>
-  <form ng-submit="addBook()">
-    <input type="text" ng-model="newBook.title" placeholder="Title" required>
-    <input type="text" ng-model="newBook.author" placeholder="Author" required>
-    <input type="text" ng-model="newBook.year" placeholder="Year" required>
-    <button type="submit">Add Book</button>
-  </form>
+<body>
+    <div ng-controller="BooksController">
+        <h1>Books</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Year</th>
+                <th>Actions</th>
+            </tr>
+            <tr ng-repeat="book in books">
+                <td>{{book.id}}</td>
+                <td>{{book.title}}</td>
+                <td>{{book.author}}</td>
+                <td>{{book.year}}</td>
+                <td>
+                    <button ng-click="editBook(book.id)">Edit</button>
+                    <button ng-click="deleteBook(book.id)">Delete</button>
+                </td>
+            </tr>
+        </table>
+        <h2>Add/Edit Book</h2>
+        <form ng-submit="saveBook()">
+            <input type="text" ng-model="bookData.title" placeholder="Title" required>
+            <input type="text" ng-model="bookData.author" placeholder="Author" required>
+            <input type="number" ng-model="bookData.year" placeholder="Year" required>
+            <input type="submit" value="Save">
+        </form>
+    </div>
 </body>
-
 </html>

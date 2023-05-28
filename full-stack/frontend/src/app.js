@@ -1,42 +1,58 @@
-angular.module('bookApp', []);
+var app = angular.module('bookApp', []);
 
-angular.module('bookApp').controller('bookController', function($scope, bookService) {
-  // Fetch all books from the server
-  bookService.getBooks().then(function(response) {
-    $scope.books = response.data;
-  });
+app.controller('BooksController', function ($scope, $http) {
+    $scope.books = [];
 
-  // Add a new book
-  $scope.addBook = function() {
-    bookService.addBook($scope.newBook).then(function(response) {
-      $scope.books.push(response.data);
-      $scope.newBook = {}; // Clear the input fields
-    });
-  };
+    $scope.getBooks = function () {
+        $http.get('/api/books').then(function (response) {
+            $scope.books = response.data;
+        });
+    };
 
-  // Delete a book
-  $scope.deleteBook = function(book) {
-    bookService.deleteBook(book._id).then(function(response) {
-      console.log(response.data.message);
-      // Remove the deleted book from the array
-      var index = $scope.books.indexOf(book);
-      if (index > -1) {
-        $scope.books.splice(index, 1);
-      }
-    });
-  };
-});
+    $scope.addBook = function () {
+        $http.post('/api/books', $scope.bookData).then(function (response) {
+            $scope.getBooks();
+            $scope.resetBookData();
+        });
+    };
 
-angular.module('bookApp').factory('bookService', function($http) {
-  return {
-    getBooks: function() {
-      return $http.get('/api/books');
-    },
-    addBook: function(book) {
-      return $http.post('/api/books', book);
-    },
-    deleteBook: function(bookId) {
-      return $http.delete('/api/books/' + bookId);
-    }
-  };
+    $scope.updateBook = function (bookId) {
+        $http.put('/api/books/' + bookId, $scope.bookData).then(function (response) {
+            $scope.getBooks();
+            $scope.resetBookData();
+        });
+    };
+
+    $scope.deleteBook = function (bookId) {
+        $http.delete('/api/books/' + bookId).then(function (response) {
+            $scope.getBooks();
+        });
+    };
+
+    $scope.editBook = function (bookId) {
+        $http.get('/api/books/' + bookId).then(function (response) {
+            $scope.bookData = response.data;
+        });
+    };
+
+    $scope.saveBook = function () {
+        if ($scope.bookData.id) {
+            // Update existing book
+            $scope.updateBook($scope.bookData.id);
+        } else {
+            // Add new book
+            $scope.addBook();
+        }
+    };
+    
+    $scope.resetBookData = function () {
+        $scope.bookData = {
+            title: '',
+            author: '',
+            year: ''
+        };
+    };
+
+    $scope.resetBookData();
+    $scope.getBooks();
 });
