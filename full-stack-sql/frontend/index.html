@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="bookApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Book App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body ng-controller="BookController">
+
+    <div class="container">
+        <h2>Books</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Year</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="book in books">
+                    <td>{{ book.id }}</td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.year }}</td>
+                    <td>
+                        <button class="btn btn-primary" ng-click="editBook(book)">Edit</button>
+                        <button class="btn btn-danger" ng-click="deleteBook(book.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Add/Edit Book</h3>
+        <form>
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" class="form-control" id="title" ng-model="newBook.title">
+            </div>
+            <div class="form-group">
+                <label for="author">Author:</label>
+                <input type="text" class="form-control" id="author" ng-model="newBook.author">
+            </div>
+            <div class="form-group">
+                <label for="year">Year:</label>
+                <input type="text" class="form-control" id="year" ng-model="newBook.year">
+            </div>
+
+            <button type="submit" class="btn btn-success" ng-click="saveBook()">Save</button>
+            <button type="button" class="btn btn-default" ng-click="clearForm()">Clear</button>
+        </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
